@@ -1,22 +1,21 @@
 import sys
 import pandas as pd
-import numpy as np
 
 def load_data(messages_filepath, categories_filepath):
-'''
-load and merge two datasets into one dataset
-'''
+    '''
+    load and merge two datasets into one dataset
+    '''
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
-    df = messages.merge(categories, on = 'id', how = 'inner')
+    df = messages.merge(categories, on='id', how='inner')
     return df
 
 def clean_data(df):
-'''
-clean the dataset
-'''
-    categories = df.categories.str.split(';',expand=True)
-    row = categories.iloc[0,:]
+    '''
+    clean the dataset
+    '''
+    categories = df.categories.str.split(';', expand=True)
+    row = categories.iloc[0, :]
     category_colnames = [i[:-2] for i in row]
     categories.columns = category_colnames
     for column in categories:
@@ -24,15 +23,14 @@ clean the dataset
         categories[column] = categories[column].str[-1]
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
-    df = pd.concat([df.drop(['categories'], axis = 1),categories], axis = 1, join = 'inner')
+    df = pd.concat([df.drop(['categories'], axis=1), categories], axis=1, join='inner')
+    df.drop_duplicates(inplace=True, ignore_index=True)
     return df
 
 def save_data(df, database_filename):
-'''
-save the cleaned dataset into database
-'''
     from sqlalchemy import create_engine
     engine = create_engine('sqlite:///'+database_filename)
+    engine.execute('DROP TABLE IF EXISTS message;')
     df.to_sql('message', engine, index=False)
 
 def main():
