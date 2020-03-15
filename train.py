@@ -17,7 +17,10 @@ from sklearn.metrics import classification_report
 from sklearn.base import BaseEstimator, TransformerMixin
 
 def load_data(database_filepath):
-    engine = create_engine('sqlite:///DisasterResponse.db')
+    '''
+    Load dataframe from a database
+    '''
+    engine = create_engine('sqlite:///'+database_filepath)
     df = pd.read_sql('SELECT * FROM message', engine)
     X = df.message
     y = df.iloc[:, 4:]
@@ -26,6 +29,9 @@ def load_data(database_filepath):
     return X, y, category_names
 
 def tokenize(text):
+    '''
+    Tokenize and lemmatize the text
+    '''
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -37,7 +43,9 @@ def tokenize(text):
     return clean_tokens
 
 class TextLengthExtractor(BaseEstimator, TransformerMixin):
-    
+    '''
+    A class to get the length of each tokenized text, and apply the function to all cells
+    '''
     def textlength(self, text):        
         return len(tokenize(text))
 
@@ -50,7 +58,9 @@ class TextLengthExtractor(BaseEstimator, TransformerMixin):
 
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
-
+    '''
+    A class to see if the first letter is a verb, and apply the function to all cells
+    '''
     def starting_verb(self, text):
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
@@ -68,7 +78,9 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         return pd.DataFrame(X_tagged)
 
 def build_model():
-    
+    '''
+    Build the model
+    '''
     pipeline_randomforest = Pipeline([
     ('features', FeatureUnion([
 
@@ -92,6 +104,9 @@ def build_model():
 
 
 def evaluate_model(model, X_test, y_test, category_names):
+    '''
+    use the model to make prediction, and print out every column's precision, recall and fi scores
+    '''
     y_pred = model.predict(X_test)
     
     result = []
@@ -108,11 +123,15 @@ def evaluate_model(model, X_test, y_test, category_names):
           format(df.precision.mean(),df.recall.mean(),df.f1_score.mean()))
 
 def save_model(model, model_filepath):
-    
+    '''
+    Save the model to a .pkl file
+    '''
     pickle.dump(model, open('model_randomforest.pkl', 'wb'))
 
 
 def main():
+    
+    
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))

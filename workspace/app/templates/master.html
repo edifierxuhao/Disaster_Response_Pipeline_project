@@ -32,16 +32,18 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1 class="text-center">Disaster Response Project</h1>
+        <h2 class="text-center">Disaster Response Project</h2>
         <p class="text-center">Analyzing message data for disaster response</p>
         <hr />
-      
+
         <div class="row">
             <div class="col-lg-12 form-group-lg">
                 <form action="/go" method="get">
-                    <input type="text" class="form-control form-control-lg" name="query" placeholder="Enter a message to classify">
+                    <input type="text" class="form-control form-control-lg md-2" name="query" placeholder="Enter a message to classify">
+                    <small calss="form-text text-muted">Please input a message with less than 50 words.</small>
+
                     <div class="col-lg-offset-5">
-                        <button type="submit" class="btn btn-lg btn-success">Classify Message</button>
+                        <button type="submit" class="btn btn-lg btn-primary mt-2">Submit</button>
                     </div>
                 </form>
             </div>
@@ -68,7 +70,9 @@
     const graphs = {{graphJSON | safe}};
     const ids = {{ids | safe}};
     for(let i in graphs) {
-        Plotly.plot(ids[i], graphs[i].data, graphs[i].layout);
+        Plotly.plot(ids[i],
+            graphs[i].data,
+            graphs[i].layout || {});
     }
 </script>
 
