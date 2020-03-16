@@ -4,7 +4,7 @@ import pandas as pd
 
 def load_data(messages_filepath, categories_filepath):
     '''
-    load and merge two datasets into one dataset
+    function of loading and merging two datasets into one dataset
     '''
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
@@ -13,7 +13,7 @@ def load_data(messages_filepath, categories_filepath):
 
 def clean_data(df):
     '''
-    clean the dataset
+    function of cleaning the dataset
     '''
     categories = df.categories.str.split(';', expand=True)
     row = categories.iloc[0, :]
@@ -30,12 +30,18 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    '''
+    function of saving the dataset into a sqlalchemy database
+    '''
     from sqlalchemy import create_engine
     engine = create_engine('sqlite:///'+database_filename)
     engine.execute('DROP TABLE IF EXISTS message;')
     df.to_sql('message', engine, index=False)
 
 def main():
+    '''
+    main function
+    '''
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]

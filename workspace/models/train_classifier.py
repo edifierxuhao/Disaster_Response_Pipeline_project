@@ -34,7 +34,7 @@ def tokenize(text):
     '''
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
-
+    # tokenize and lemmatize every text, and save processed tokens into a list
     clean_tokens = []
     for tok in tokens:
         clean_tok = lemmatizer.lemmatize(tok).lower().strip()
@@ -105,7 +105,8 @@ def build_model():
 
 def evaluate_model(model, X_test, y_test, category_names):
     '''
-    use the model to make prediction, and print out every column's precision, recall and fi scores
+    use the model to make prediction, and print out every column's precision, 
+    recall and f1 scores
     '''
     y_pred = model.predict(X_test)
     
@@ -113,7 +114,8 @@ def evaluate_model(model, X_test, y_test, category_names):
     for i in range(y_test.shape[1]): 
         test_value = y_test.iloc[:, i]
         pred_value = [a[i] for a in y_pred]
-        result.append(list(classification_report(test_value, pred_value,output_dict = True)['0'].values())[:3])
+        result.append(list(classification_report(test_value, pred_value,output_dict = True)['0'].\
+                           values())[:3])
     
     df = pd.DataFrame(result,columns=['precision','recall','f1_score'])
     df['indicator'] = pd.Series(category_names)
@@ -130,7 +132,9 @@ def save_model(model, model_filepath):
 
 
 def main():
-    
+    '''
+    the main function
+    '''
     
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]

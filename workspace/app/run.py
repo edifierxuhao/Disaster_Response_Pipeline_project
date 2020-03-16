@@ -64,7 +64,6 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         X_tagged = pd.Series(X).apply(self.starting_verb)
         return pd.DataFrame(X_tagged)
 
-
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('message', engine)
@@ -77,9 +76,9 @@ model = joblib.load("models/model_randomforest.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
-
-    # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
+    '''
+    set a function to render the master.html
+    '''
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
@@ -91,7 +90,6 @@ def index():
     indicator_names = list(indicator_counts.index)
 
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
@@ -164,6 +162,9 @@ def index():
 # web page that handles user query and displays model results
 @app.route('/go')
 def go():
+    '''
+    set a function to render the go.html
+    '''
     # save user input in query
     query = request.args.get('query', '')
 
@@ -171,7 +172,7 @@ def go():
     classification_labels = model.predict([query])[0]
     classification_results = dict(zip(df.columns[4:], classification_labels))
 
-    # This will render the go.html Please see that file.
+    # This will render the go.html.
     return render_template(
         'go.html',
         query=query,

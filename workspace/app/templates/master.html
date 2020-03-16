@@ -16,7 +16,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <a class="navbar-brand" href="/">Disaster Response App</a>
+   <a class="navbar-brand" href="/">Disaster Response Project</a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
        data-target="#navbarNav"
        aria-controls="navbarNav" aria-expanded="false"
@@ -53,7 +53,10 @@
         <h2 class="text-center">Disaster Response Project</h2>
         <p class="text-center">Analyzing message data for disaster response</p>
         <hr />
-
+        <p class="text-center text-muted">Introduction: This website analyzes disaster data
+            from <a href='https://www.figure-eight.com/'>Figure Eight</a> to build a machine learning model
+            for an API that classifies disaster messages.</p>
+        <hr />
         <div class="row">
             <div class="col-lg-12 form-group-lg">
                 <form action="/go" method="get">
@@ -77,10 +80,9 @@
         <div class="page-header">
             <h1 class="text-center">Overview of Training Dataset</h1>
         </div>
-    {% endblock %}
+
 
     <div class = 'row'>
-        <p>Explian: This app ################################### </p>
 
 
     </div>
@@ -107,7 +109,7 @@
     {% endfor %}
     -->
 
-
+    {% endblock %}
 
 <script type="text/javascript">
     const graphs = {{graphJSON | safe}};
