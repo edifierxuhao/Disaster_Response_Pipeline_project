@@ -134,8 +134,8 @@ def index():
         {
             'data': [
                 Bar(
-                    x = genre_names,
-                    y = genre_counts
+                    x = indicator_names,
+                    y = indicator_counts
                 )
             ],
 
