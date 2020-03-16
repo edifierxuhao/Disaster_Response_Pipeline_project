@@ -10,7 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
 
 <body>
 
@@ -27,20 +28,21 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="https://www.figure-eight.com/dataset/combined-disaster-response-data/">Data Sause<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="https://www.figure-eight.com/dataset/combined-disaster-response-data/">Data Sources<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://github.com/edifierxuhao">Github</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.linkedin.com/in/edifierxuhao/m">LinkedIn</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://github.com/edifierxuhao/Disaster_Response_Pipeline_projec">Github Repository</a>
+        <a class="nav-link" href="https://github.com/edifierxuhao/Disaster_Response_Pipeline_projec">Github Repository of this app</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://www.udacity.com">Udacity</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/edifierxuhao"><img src='/static/githublogo.png' alt='github' class="img-fluid" width="30" height="30"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.linkedin.com/in/edifierxuhao"><img src='/static/linkedinlogo.png' alt='linkedin' class="img-fluid" width="30" height="30"></a>
+      </li>
+
     </ul>
   </div>
 </nav>
@@ -52,16 +54,16 @@
     <div class="container">
         <h2 class="text-center">Disaster Response Project</h2>
         <p class="text-center">Analyzing message data for disaster response</p>
-        <hr />
-        <p class="text-center text-muted">Introduction: This website analyzes disaster data
-            from <a href='https://www.figure-eight.com/'>Figure Eight</a> to build a machine learning model
-            for an API that classifies disaster messages.</p>
+
+        <small class="text-center text-muted">Introduction: This website analyzes disaster data
+            from <a href='https://www.figure-eight.com/'>Figure Eight</a> , and try to build a API using machine learning model
+            to classifies disaster messages.</small>
         <hr />
         <div class="row">
             <div class="col-lg-12 form-group-lg">
                 <form action="/go" method="get">
                     <input type="text" class="form-control form-control-lg md-2" name="query" placeholder="Enter a message to classify">
-                    <small calss="form-text text-muted">Please input a message with less than 50 words.</small>
+                    <small class="text-center text-muted">Please input a message with less than 50 words.</small>
 
                     <div class="col-lg-offset-5">
                         <button type="submit" class="btn btn-lg btn-primary mt-2">Submit</button>
@@ -80,12 +82,6 @@
         <div class="page-header">
             <h1 class="text-center">Overview of Training Dataset</h1>
         </div>
-
-
-    <div class = 'row'>
-
-
-    </div>
 
     <div class='row'>
         <div class="col-6">
@@ -110,6 +106,20 @@
     -->
 
     {% endblock %}
+
+    <footer class="mastfoot mt-10 text-center">
+      <div class="inner">
+        <p>
+            <br/>
+            <br/>
+            <br/>
+
+
+        </p>
+      </div>
+    </footer>
+
+
 
 <script type="text/javascript">
     const graphs = {{graphJSON | safe}};

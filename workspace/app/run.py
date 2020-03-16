@@ -33,12 +33,22 @@ class TextLengthExtractor(BaseEstimator, TransformerMixin):
     all cells
     '''
     def textlength(self, text):
+        '''
+        set a function to get the length of the tokenized text
+        '''
         return len(tokenize(text))
 
     def fit(self, x, y=None):
+        '''
+        set a fit function
+        '''
         return self
 
     def transform(self, X):
+        '''
+        set a function to apply the textlength to all texts using a
+        pd.Series.apply
+        '''
         X_tagged = pd.Series(X).apply(self.textlength)
         return pd.DataFrame(X_tagged)
 
@@ -49,6 +59,9 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
     cells
     '''
     def starting_verb(self, text):
+        '''
+        set a function to judge if the first token of the text is a verb
+        '''
         sentence_list = sent_tokenize(text)
         for sentence in sentence_list:
             pos_tags = pos_tag(tokenize(sentence))
@@ -58,9 +71,16 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         return False
 
     def fit(self, x, y=None):
+        '''
+        set a fit function
+        '''
         return self
 
     def transform(self, X):
+        '''
+        set a function to apply the starting_verb to all texts using a
+        pd.Series.apply
+        '''
         X_tagged = pd.Series(X).apply(self.starting_verb)
         return pd.DataFrame(X_tagged)
 
@@ -87,7 +107,7 @@ def index():
     basic_classification_names = list(basic_classification_counts.index)
 
     indicator_counts = df.iloc[:,7:].sum().sort_values(ascending = False)
-    indicator_names = list(indicator_counts.index)
+    indicator_names = list(indicator_counts.index.str.replace('_', ' '))
 
     # create visuals
     graphs = [
@@ -119,7 +139,7 @@ def index():
             ],
 
             'layout': {
-                'title': 'Distribution of Information Basic Classification',
+                'title': 'Distribution of Basic Classification',
                 'yaxis': {
                     'title': "Count"
                 },
@@ -181,6 +201,9 @@ def go():
 
 
 def main():
+    '''
+    set the main function
+    '''
     app.run(host='0.0.0.0', port=3001, debug=True)
 
 
