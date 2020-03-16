@@ -32,8 +32,8 @@ After trying KNeighborsClassifier, GaussianNB and RandomForestClassifier, I choo
 - Build a Flask Web App, use the saved machine learning model to classify new texts.
 
 The app show like this:
-![](Screen_Shot_0.png)
-![](Screen_Shot_1.png)
+![screen shot 1](Screen_Shot_0.png)
+![screen shot 1](Screen_Shot_1.png)
 
 ## File Descriptions <a name="files"></a>
 
