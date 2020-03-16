@@ -32,10 +32,6 @@ The `workspace` folder is used for build a local web app. Inside the `workspace`
 
 I used the randomforestcalssifier and get a f1 score more than 95.7%. But the pickle file of the model is too big (more than 6G) to upload, anyone use the file should run the `train_classifier.py` to get the pickle file.
 
-## Results<a name="results"></a>
-
-The main findings of the code can be found at the post available [here](https://medium.com/@edifierxuhao123/how-to-run-an-airbnb-business-in-sydney-eed9b30d6c40).
-
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 
 Must give credit to figure eight for the dataset.  
