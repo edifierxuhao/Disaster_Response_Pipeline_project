@@ -42,4 +42,5 @@ Must give credit to figure eight for the dataset.
 The pipeline and web app files Referenced udacity data-engineer course.
 
 Otherwise, this software is follow a MIT Licenec.
-edifierxuhao123@gmail.com
+
+contact email: edifierxuhao123@gmail.com
