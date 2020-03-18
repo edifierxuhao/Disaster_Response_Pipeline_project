@@ -85,11 +85,11 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         return pd.DataFrame(X_tagged)
 
 # load data
-engine = create_engine('sqlite:///data/DisasterResponse.db')
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('message', engine)
 
 # load model
-model = joblib.load("models/model_randomforest.pkl")
+model = joblib.load("../models/model_randomforest.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
